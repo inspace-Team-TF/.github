@@ -5,4 +5,4 @@
 
 | Name    | <center>조찬호</center> | <center>김하정</center> |
 | ------- | --------------------------------------------- | ------------------------------------ |
-| Profile | <center> <img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/177176591?v=4" /> </center>|<center><img width="110px" height="110px" src="" /></center>|
+| Profile | <center> <img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/177176591?v=4" /> </center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/178122100?v=4" /></center>|
