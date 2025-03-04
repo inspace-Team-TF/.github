@@ -3,6 +3,6 @@
 <h1>팀 구성원</h1>
 <br/>
 
-| Name    | <center>조찬호</center> | <center>김하정</center> |
+| Name    | <center>조찬호</center> | <center>김하정</center> | <center>배정훈</center> |
 | ------- | --------------------------------------------- | ------------------------------------ |
-| Profile | <center> <img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/177176591?v=4" /> </center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/178122100?v=4" /></center>|
+| Profile | <center> <img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/177176591?v=4" /> </center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/178122100?v=4" /></center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/178122100?v=4" /></center>|
