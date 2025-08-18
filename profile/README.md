@@ -1,3 +1,4 @@
+<img width="100%" height="626" alt="Image" src="https://github.com/user-attachments/assets/1916eccd-afec-4263-b6ad-9d3711669787" />
 
 <h1>팀 구성원</h1>
 <br/>
