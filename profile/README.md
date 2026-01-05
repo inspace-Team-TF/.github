@@ -1,5 +1,3 @@
-<img width="100%" height="626" alt="Image" src="https://github.com/user-attachments/assets/1916eccd-afec-4263-b6ad-9d3711669787" />
-
 <h1>팀 구성원</h1>
 <br/>
 
@@ -7,218 +5,120 @@
 | ------- | --------------------------------------------- | ------------------------------------ | ------------------------------------ |
 | Profile | <center> <img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/177176591?v=4" /> </center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/178122100?v=4" /></center>|<center><img width="110px" height="110px" src="https://avatars.githubusercontent.com/u/225784309?v=4" /></center>|
 
-# Git 컨벤션 & 프로젝트 운영 규칙
+# [2026] Operations Hub 운영 규칙
 
 ## 1. 커밋 컨벤션
 
 | Type | 설명 |
 | --- | --- |
-| Feat | 기능 **추가 완료** (새로운 기능 구현) |
-| Updated | 기능 **개선/업그레이드** (성능, 최적화 등) |
-| Fix | **버그 수정/디버깅** |
-| Docs | **문서** 추가/수정 (주석, README, 가이드 등) |
-| Style | **코드 스타일/포맷** 변경 (로직 변경 없음) |
-| Prototype | **프로토타입/실험** 구현 (초기 탐색) |
-| Chore | 빌드/설정/의존성/기타 잡무 |
-| Test | **테스트 코드** 추가/수정 |
-| Refactor | 내부 구조 개선 (**기능 변화 없음**) |
-| Remove | 코드/파일/기능 **삭제** |
-| WIP | **중간 저장**(작업 진행 중) — 보호 브랜치 금지, 머지 전 **squash 필수** |
-| Branch | **새 브랜치 생성/초기화** 커밋(목적/스코프 명시) |
+| **Feat** | 기능 **추가 완료** (새로운 기능 구현) |
+| **Updated** | 기능 **개선/업그레이드** (성능, 최적화 등) |
+| **Fix** | **버그 수정/디버깅** |
+| **Docs** | **문서** 추가/수정 (주석, README, 가이드 등) |
+| **Style** | **코드 스타일/포맷** 변경 (로직 변경 없음) |
+| **Prototype** | **프로토타입/실험** 구현 (초기 탐색) |
+| **Chore** | 빌드/설정/의존성/기타 잡무 |
+| **Refactor** | 내부 구조 개선 (**기능 변화 없음**) |
+| **Temp** | **작업 진행 중 중간저장** (WIP에서 명칭 변경) — 머지 전 **squash 필수** |
+| **Branch** | **새 브랜치 생성/초기화** 커밋(목적/스코프 명시) |
 
 ### 1.1 메시지 형식
 
 ```bash
-git commit -m "Type YYYY.MM,DD: title" -m "[Body]"
+git commit -m "Type YYYY.MM.DD: title" -m "[Body]"
 
 ```
 
-- **첫 번째 `m` (헤더)**
-    - `Type`: 위 표의 키워드(예: `Feat`, `Fix`, `WIP`, `Branch`, …)
-    - `날짜`: `YYYY.MM,DD` (예: `2025.08,18`)
-    - `title`: 50자 내외, 한글 OK, 명령형/현재형
-- **두 번째 `m` (Body)**
-    - **Why**(변경 배경), **What**(주요 변경), **Impact**(영향/마이그레이션) 를 bullet로 기재
+* **Type**: 위 표의 키워드 활용
+* **날짜**: `YYYY.MM.DD` 형식
+* **Body**: Why(배경), What(변경 내용), Impact(영향도)를 불렛 포인트로 기재 (권장)
 
-### 브레이킹 변경 표기
-
-- 헤더 타입 뒤에 `!` 추가:
-    
-    `Feat! 2025.08,18: 인증 API 스키마 변경`
-    
-- 또는 Body에 `BREAKING CHANGE:` 행 추가
-
-### 1.3 예시
-
-**중간 저장(WIP)** — *보호 브랜치 금지, 개인/로컬/개인 원격에서만 허용*
-
-```bash
-git commit -m "WIP 2025.08,18: 프로필 편집 초기 UI 뼈대" \
-  -m "- 레이아웃 기초
-- 상태관리 구조 미정
-[skip ci]"
-
-```
-
-**브랜치 생성 기록**
-
-```bash
-git commit -m "Branch 2025.08,18: feature/profile-edit 브랜치 생성" \
-  -m "- 목적: 프로필 편집 기능 구현
-- 스코프: view, api/profile"
-
-```
-
-**기능 추가**
-
-```bash
-git commit -m "Feat 2025.08,18: 프로필 저장 API 연동" \
-  -m "- POST /api/profile 저장
-- 테스트 추가
-Resolves: #123"
-
-```
-
-**브레이킹 변경**
-
-```bash
-git commit -m "Feat! 2025.08,18: 응답 필드 foo→bar로 변경" \
-  -m "BREAKING CHANGE: 클라이언트 필드명 업데이트 필요"
-
-```
+---
 
 ## 2. 브랜치 전략
 
-### 2.1 모델
+### 2.1 모델 및 흐름
 
-- **보호 브랜치**
-    - `main`: **배포 기준**, **직접 커밋 금지**
-    - `dev`: **통합 검증**, **직접 커밋 금지**
-- **작업 흐름**
-    1. `feature/*`(또는 `fix/*` …)에서 작업
-    2. PR로 `dev`에 **Squash & Merge**
-    3. 검증 완료 시 **릴리스 PR**로 `dev → main` 승격
-    4. `main` 병합 후 **태그 부여** 및 **릴리스 노트 게시**
-    5. 필요 시 `main → dev` **back-merge**로 동기화
+* **main**: 배포 기준 브랜치 (직접 커밋 금지)
+* **dev**: 통합 검증 브랜치 (직접 커밋 금지)
+* **작업 흐름**: `feature/*` 작업 → PR 생성 → `dev`에 **Squash & Merge** → 검증 후 `main` 승격
 
-### 2.2 브랜치 네이밍
+### 2.2 브랜치 네이밍 (권장)
 
-```
-<category>/<scope>-<짧은-설명>
+`<category>/<scope>-<짧은-설명>`
 
-```
+* 예: `feature/profile-edit`, `fix/auth-token-refresh`
 
-- `category`: `feature` | `fix` | `chore` | `refactor` | `test` | `prototype` | `hotfix`
-- `scope`: 모듈/도메인 (예: `auth`, `profile`)
-- **예시**
-    - `feature/profile-edit`
-    - `fix/auth-token-refresh`
-    - `prototype/ai-suggestion-poc`
+---
 
-### 2.3 생성/동기화
+## 3. 프로젝트 관리 및 라벨 (Labels)
+> 새 레파지토리 생성시 적용 필요
 
-```bash
-# 생성
-git checkout -b feature/profile-edit
+### 3.1 업무용 라벨 (Development & Planning)
 
-# 원격 추적
-git push -u origin feature/profile-edit
+| 라벨 이름 | 설명 (Description) | 추천 색상 |
+| --- | --- | --- |
+| **Type: Planning** | 기획 및 아이디어 구상 단계의 작업 | `#D4C5F9` |
+| **Type: Spec** | 업무의 상세 정의 및 구체화(Specification) 작업 | `#FBCA04` |
+| **Type: Feature** | 새로운 기능을 설계하고 개발하는 작업 | `#0E8A16` |
+| **Type: Dev** | 전반적인 개발 관련 일반 업무 | `#1D76DB` |
+| **Type: Enhancement** | 기존 기능의 성능 개선 및 고도화 작업 | `#5319E7` |
+| **Type: Bug** | 예기치 못한 오류 보고 및 버그 수정 | `#D73A4A` |
+| **Type: Refactoring** | 기능 변경 없이 코드 품질을 개선하는 작업 | `#006B75` |
+| **Type: Fix** | 단순 오타 수정이나 사소한 기능 변경 | `#F9D0C4` |
+| **Type: Document** | 매뉴얼, 기술 문서, 업무 보고 등 문서화 작업 | `#0075CA` |
 
-# 정기 동기화 (dev 기준)
-git fetch origin
-git rebase origin/dev    # 충돌은 이 시점에 해결
+### 3.2 근태 및 운영용 라벨 (Absence & Admin)
 
-```
+| 라벨 이름 | 추천 색상 | 용도 (Description) |
+| --- | --- | --- |
+| **Type: Leave** | `#E9E9E9` | 연차, 반차, 보상휴가 등 개인 휴가 일정 |
+| **Type: Trip** | `#FBCA04` | 외부 미팅, 세미나, 현장 출장 등 외부 활동 |
+| **Type: Event** | `#C2E0C6` | 정기 회의, 워크샵, 릴리즈 등 팀 이벤트 |
+| **Type: Admin** | `#D4C5F9` | 자산 관리, 서류 제출 등 일반 행정 업무 |
+| **Type: Milestone** | `#006B75` | 반드시 완료되어야 하는 중요한 이정표 |
 
-> 릴리스 사이클 후에는 main을 dev로 back-merge 해 기준점 정렬
-> 
+---
 
-```bash
-git checkout dev
-git pull
-git merge --ff-only origin/main  # 충돌 시 해결 후 push
+## 4. 이슈 템플릿 (Issue Templates)
+> 새 레파지토리 생성시 적용 필요
 
-```
+### 템플릿 1: [Project] Planning & Development
 
-### 2.4 병합 규칙
-
-- **PR 필수**, **Squash & Merge 기본**(`feature/*` → `dev`)
-- `dev → main`은 **“릴리스 PR”**로 진행 (상세는 §4)
-- **Rebase 우선**, 머지 커밋 최소화(히스토리 선형 유지)
-- 충돌 해결 책임: **브랜치 소유자**
-
-## 3. Pull Request 규칙 (프로젝트 별 선택)
-
-### 3.1 검토 & 권한
-
-- 승인: **최소 2명 (본인 포함)**
-- 작성자 본인 병합 가능(승인·CI 충족 시)
-
-### 3.2 품질 게이트
-
-- **빌드/테스트/린트** 모두 통과
-- UI 변경: **스크린샷** 첨부
-- 브레이킹/마이그레이션 시나리오 **명시**
-
-### 3.3 체크리스트
-
-- [ ]  목적/배경 설명
-- [ ]  사용자 영향/릴리스 노트 여부
-- [ ]  스크린샷(UI 변경 시)
-- [ ]  브레이킹/마이그레이션 안내
-- [ ]  테스트 추가/수정 및 수동 시나리오
-- [ ]  컨벤션(타입/제목/본문/푸터) 준수
-- [ ]  CI 통과
-- [ ]  리뷰 코멘트 반영
-
-### 3.4 PR 템플릿
+* **목적**: 기획, 전략, 개발 및 일반 업무 등록
+* **내용**:
 
 ```markdown
-## 목적
--
+## 📝 Summary
+> (이 작업의 목적과 기대 결과를 간단히 작성)
 
-## 주요 변경
--
+## 📋 Tasks
+- [ ] 
+- [ ] 
 
-## 스크린샷 (UI 또는 가시화 가능한 경우)
--
+## 📅 Timeline
+- **시작 예정일**: YYYY-MM-DD
+- **완료 목표일**: YYYY-MM-DD
+*(중단 및 재시작 시 해당 일정도 업데이트 필수)*
 
-## 테스트
-- [ ] 테스트 추가/수정
-- [ ] 수동 테스트 시나리오 기재
-
-## 영향도/릴리스 노트
--
-
-## 이슈
-- Resolves: #
-
-## 체크리스트
-- [ ] 컨벤션(타입/제목/본문/푸터) 준수
-- [ ] CI 통과
-- [ ] 리뷰 코멘트 반영
+## 🔗 관련 정보 (References)
+- 관련 이슈: #
+- 참고 문서/링크: 
 
 ```
 
-## 4. 자주 쓰는 명령 모음
+### 템플릿 2: [Absence] Leave & Business Trip
 
-```bash
-# 최신 dev 기반으로 작업 시작
-git checkout dev && git pull
-git checkout -b feature/<scope>-<desc>
+* **목적**: 연차, 반차, 출장 등 부재 일정 공유
+* **내용**:
 
-# 작업 중 정기 동기화
-git fetch origin && git rebase origin/dev
+```markdown
+## 🗓️ 부재 정보 (Details)
+- **종류**: (연차 / 반차 / 출장 / 기타)
+- **기간**: YYYY-MM-DD ~ YYYY-MM-DD
 
-# dev → main 릴리스 PR 전 최신화
-git checkout dev && git pull
-git checkout main && git pull
-# (릴리스 PR은 Git 호스팅 UI에서 생성)
-
-# 릴리스 후 동기화
-git checkout dev
-git pull
-git merge --ff-only origin/main
-git push
+## 📢 업무 인수인계 (Handover)
+- 부재 중 긴급 연락처: 
+- 업무 대행자 또는 공유 사항: 
 
 ```
